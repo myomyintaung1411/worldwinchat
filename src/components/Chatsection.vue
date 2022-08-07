@@ -272,7 +272,7 @@
                     draggable="false"
                   /> -->
                   <img
-                    :src="'https://asdqwe.co/emotion/' + item.file"
+                    :src="'http://hm5556.xyz/emotion/' + item.file"
                     :data="item.code"
                     @click="emojiSelect(item.code)"
                     :title="item.title"
@@ -306,11 +306,11 @@ export default {
         // image: "https://tysq666.cn/chatimg/image.png",
         // smile: "https://tysq666.cn/chatimg/smile.png",
 
-        customer: "https://asdqwe.co/images/avatar.png",
-        service: "https://asdqwe.co/images/service-avatar.png",
-        file: "https://asdqwe.co/chatimg/file.png",
-        image: "https://asdqwe.co/chatimg/image.png",
-        smile: "https://asdqwe.co/chatimg/smile.png",
+        customer: `http://hm5556.xyz/images/avatar.png`,
+        service: `http://hm5556.xyz/images/service-avatar.png`,
+        file: `http://hm5556.xyz/chatimg/file.png`,
+        image: `http://hm5556.xyz/chatimg/image.png`,
+        smile: `http://hm5556.xyz/chatimg/smile.png`,
       },
       name: "",
       mine: true,
@@ -608,7 +608,7 @@ export default {
 
     downloadImage(imgName) {
      // let srcImg = "https://tysq666.cn/" + imgName;
-      let srcImg = "https://asdqwe.co/" + imgName;
+      let srcImg = "http://hm5556.xyz/" + imgName;
       return srcImg;
     },
 
