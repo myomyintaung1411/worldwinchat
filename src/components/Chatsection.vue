@@ -30,7 +30,7 @@
                 />
               </div>
               <div class="outer-right">
-                <div class="read-msg">{{ customerName }}</div>
+                <!-- <div class="read-msg">{{ customerName }}</div> -->
                 <div class="customer">
                   <div class="pre" v-html="replaceFace(item.message)"></div>
                 </div>
@@ -53,7 +53,7 @@
                 />
               </div>
               <div class="outer-right" v-show="downloadImage(item.message)">
-                <div class="read-msg">{{ customerName }}</div>
+                <!-- <div class="read-msg">{{ customerName }}</div> -->
                 <div
                   class="customer"
                   @click="imgClick(downloadImage(item.message))"
@@ -199,7 +199,7 @@
           tabindex="0"
           @focus="focusEvent()"
           @keyup.enter.exact="SendMsg"
-          v-model="chatmsg"
+          v-model.trim="chatmsg"
           @paste.prevent="PasteData"
         ></textarea>
         <!-- <Editable
