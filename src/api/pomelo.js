@@ -59,9 +59,9 @@ function conn(cb) {
         // console.log(res, 'first', msg, msg2)
         if (res.code == 200) {
 
-          let pt = res.port == '9010' ? '/conn3/' : res.port == '9011' ? '/conn4/' : '/conn5/'
+        //  let pt = res.port == '9010' ? '/conn3/' : res.port == '9011' ? '/conn4/' : '/conn5/'
           p_server2.init(
-            { host: 'hm5556.xyz', port: pt, log: true },
+            { host: 'hm5556.xyz', port: '/conn3/', log: true },
             // { host: 'asdqwe.co', port: '/conn3/', log: true },
             function (res) {
               p_server2.request('connector.entryHandler.entry', msg2, res => {
