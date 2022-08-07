@@ -145,8 +145,9 @@ export default {
 }
 
 .layui-col-xs9 {
-  width: 75%;
+  width: 70%;
   float: left;
+  // background-color: red;
 }
 
 .chat-header-tool {
@@ -159,9 +160,12 @@ export default {
   // align-self: center;
 }
 .layui-col-xs1 {
-  width: 8.33333333%;
+  // width: 8.33333333%;
   // background: red;
-  float: left;
+   float: left;
+  position: absolute;
+  right: 35px;
+  // background-color: red;
 }
 .centerimg {
   // background: white;
