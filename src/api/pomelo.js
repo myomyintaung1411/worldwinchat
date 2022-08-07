@@ -173,7 +173,7 @@ function startTimer() {
 function chkHeartBeat(server) {
   console.log("chat heart beat ******************", nHeartBeat);
   if (nHeartBeat > 30) {
-    console.log("自检测跳线了");
+    //console.log("自检测跳线了");
     window.location.reload();
     alert("Due to poor network signal, you need to log in again");
     server.disconnect();

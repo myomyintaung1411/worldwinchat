@@ -416,7 +416,7 @@ export default {
         ["jpg", "png", "jpeg", "svg", "gif"].indexOf(FileExt.toLowerCase()) ===
         -1
       ) {
-        this.$message.warning("请上传后缀名为jpg、png、jpeg、svg、gif的附件！");
+        this.$message.warning("Please upload attachments with suffixes jpg, png, jpeg, svg, gif!");
         e.target.value = "";
         // return false;
       }
@@ -473,7 +473,7 @@ export default {
             );
             this.autoFocusMsg();
             e.target.value = "";
-            return this.$message.success("成功上传图片");
+            return this.$message.success("Image uploaded successfully");
           }
         })
         .catch((e) => {
@@ -629,7 +629,7 @@ export default {
         -1
       ) {
         this.$message.warning(
-          "请上传后缀名为jpg、png、jpeg、svg、gif,的附件！"
+          "Please upload attachments with suffixes of jpg, png, jpeg, svg, gif!"
         );
         e.target.value = "";
         // return false;
@@ -686,7 +686,7 @@ export default {
             );
             this.autoFocusMsg();
             e.target.value = "";
-            return this.$message.success("成功上传图片");
+            return this.$message.success("Image uploaded successfully");
           }
         })
         .catch((e) => {
