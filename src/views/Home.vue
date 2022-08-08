@@ -2,11 +2,13 @@
   <!-- <div 
    :class="[{home: true}, {phonee: Screenwidth > 1000 ? true: false}]"
    > -->
-  <div class="home">
-    <Header></Header>
-    <Chatsection></Chatsection>
-    <Loader v-if="loading"></Loader>
-  </div>
+  <!-- <div class="__main"> -->
+    <div class="home">
+      <Header></Header>
+      <Chatsection></Chatsection>
+      <Loader v-if="loading"></Loader>
+    </div>
+  <!-- </div> -->
 </template>
 
 <script>
@@ -67,7 +69,7 @@ export default {
           // this.NotLoading();
           console.log("msg decry ***", msg);
           if (msg.result == "false") {
-            this.$message.error(msg.reason);
+            this.$message.error('customer service is not available');
           } else {
             this.$store.state.customerInfo.customerId = msg.customer_id;
             this.$store.state.customerInfo.customerImgUrl = msg.customer_imgUrl;
@@ -96,37 +98,9 @@ export default {
         .catch((e) => {
           console.log(e.toString());
           // this.Loading();
-          this.$message.error(e.toString());
+          //this.$message.error(e.toString());
         });
     },
-
-    // getClientInfo(query) {
-    //   var url =
-    //     "http://" +
-    //     window.g.ip +
-    //     ":" +
-    //     window.g.pomelo_http_port +
-    //     "/client_signIn";
-    //    console.log("inside of first time get client info client ******", query);
-    //   this.$store
-    //     .dispatch("get_ClientInfo", { query, url })
-    //     .then(() => {
-    //       this.$pomelo.conn((err, res) => {
-    //         console.log(res);
-    //         if (err) console.error(err);
-    //         if (res.code == 200) {
-    //           this.Loading();
-    //           this.getChatMessage();
-    //           // console.log(res);
-    //         }
-    //       });
-    //     })
-    //     .catch((e) => {
-    //       // console.log(e.toString());
-    //       this.Loading();
-    //       this.$message.error(e.toString());
-    //     });
-    // },
 
     getAlreadyClientInfo(query) {
       console.log("inside of getAlreadyClientInfo client ******", query);
@@ -147,7 +121,8 @@ export default {
           var msg = JSON.parse(AES.decrypt(body, en));
           console.log("ressssssssssssssssssss decry", msg);
           if (msg.result == "false") {
-            this.$message.error(msg.reason);
+            //this.$message.error(msg.reason);
+            this.$message.error('customer service is not available');
           } else {
             this.$store.state.customerInfo.customerId = msg.customer_id;
             this.$store.state.customerInfo.customerImgUrl = msg.customer_imgUrl;
@@ -176,7 +151,7 @@ export default {
         .catch((e) => {
           console.log(e);
           // this.Loading();
-          return this.$message.error(e.toString());
+          //return this.$message.error(e.toString());
         });
     },
 
@@ -320,9 +295,18 @@ export default {
 </script>
 
 <style lang="scss">
+// .__main{
+//   background-image: url('~@/assets/tt.jpg');
+//   background-size: cover;
+//   background-repeat: no-repeat;
+//   // position: relative;
+//   width: 100vw;
+//   height: 100vh;
+// }
 .home {
   width: 100%;
-  height: 100%;
+   height: 100%;
+  // max-width: 800px !important;
   position: absolute;
   background: #f7f7f7;
   padding: 0;
@@ -331,6 +315,7 @@ export default {
   bottom: 0;
   right: 0;
   margin: auto;
+  
   // width: 100%;
   // height: 100%;
   // position: absolute;

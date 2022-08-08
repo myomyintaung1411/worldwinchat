@@ -31,6 +31,7 @@ img {
   /* height: 100vh; */
   height: 100%;
   width: 100%;
+
   // min-width: 1275px !important;
 }
 
