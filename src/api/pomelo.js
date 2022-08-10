@@ -164,6 +164,17 @@ function send(msg) {
   });
 }
 
+function sendCB(msg, cb) {
+  n = n + 1
+  let en = global.en;
+  let msgSend = AES.encrypt(JSON.stringify(msg), en);
+  var route = "chat.chatHandler.onMsg"; //"agent.agentHandler.getMsg";
+  p_server2.request(route, msgSend, function (res) {
+    // console.log('res ', res)
+    cb(JSON.parse(AES.decrypt(res, en)))
+  })
+}
+
 function startTimer() {
   s_timer = setInterval(() => {
     chkHeartBeat(p_server2);
@@ -191,4 +202,5 @@ export default {
   conn,
   send,
   kick,
+  sendCB
 };

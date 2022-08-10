@@ -464,13 +464,23 @@ export default {
                 time: moment(new Date()).format("YYYY-MM-DD hh:mm:ss"),
               },
             };
-            this.$pomelo.send(sendData);
+            this.$pomelo.sendCB(sendData,(res)=>{
+              if(res.data.result == 'ok'){
+                this.$Global.chatRecord.push(mySend);
+                this.$store.commit(
+                  "setOneToOneChatRecord",
+                  this.$Global.chatRecord
+                );
+              }else{
+                return this.$message.error('network error')
+              }
+            });
             // this.$store.commit("play", true);
-            this.$Global.chatRecord.push(mySend);
-            this.$store.commit(
-              "setOneToOneChatRecord",
-              this.$Global.chatRecord
-            );
+            // this.$Global.chatRecord.push(mySend);
+            // this.$store.commit(
+            //   "setOneToOneChatRecord",
+            //   this.$Global.chatRecord
+            // );
             this.autoFocusMsg();
             e.target.value = "";
             return this.$message.success("Image uploaded successfully");
@@ -572,10 +582,21 @@ export default {
           time: moment(new Date()).format("YYYY-MM-DD hh:mm:ss"),
         },
       };
-      this.$pomelo.send(sendData);
+      //this.$pomelo.sendCB(sendData);
+      this.$pomelo.sendCB(sendData, (res) => {
+        if (res.data.result == 'ok') {
+          this.$Global.chatRecord.push(mySend);
+          this.$store.commit(
+            "setOneToOneChatRecord",
+            this.$Global.chatRecord
+          );
+        } else {
+          return this.$message.error('network error')
+        }
+      });
       // this.$store.commit("play", true);
-      this.$Global.chatRecord.push(mySend);
-      this.$store.commit("setOneToOneChatRecord", this.$Global.chatRecord);
+      // this.$Global.chatRecord.push(mySend);
+      // this.$store.commit("setOneToOneChatRecord", this.$Global.chatRecord);
       this.chatmsg = "";
       this.autoFocusMsg(); // clear data in input
     },
@@ -677,13 +698,23 @@ export default {
                 time: moment(new Date()).format("YYYY-MM-DD hh:mm:ss"),
               },
             };
-            this.$pomelo.send(sendData);
+            this.$pomelo.sendCB(sendData,(res)=>{
+              if (res.data.result == 'ok') {
+                this.$Global.chatRecord.push(mySend);
+                this.$store.commit(
+                  "setOneToOneChatRecord",
+                  this.$Global.chatRecord
+                );
+              }else{
+                return this.$message.error('network error')
+              }
+            });
             // this.$store.commit("play", true);
-            this.$Global.chatRecord.push(mySend);
-            this.$store.commit(
-              "setOneToOneChatRecord",
-              this.$Global.chatRecord
-            );
+            // this.$Global.chatRecord.push(mySend);
+            // this.$store.commit(
+            //   "setOneToOneChatRecord",
+            //   this.$Global.chatRecord
+            // );
             this.autoFocusMsg();
             e.target.value = "";
             return this.$message.success("Image uploaded successfully");
