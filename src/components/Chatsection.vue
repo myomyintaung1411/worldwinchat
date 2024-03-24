@@ -33,7 +33,7 @@
                 <!-- <div class="read-msg">{{ customerName }}</div> -->
                 <div class="customer">
                   <!-- v-html="replaceFace(item.message)" -->
-                  <div class="pre" >{{ item.message }}</div>
+                  <div class="pre" v-html="replaceFace(item.message)" ></div>
                 </div>
               </div>
             </li>
@@ -86,8 +86,8 @@
               </div>
               <div class="outer-left">
                 <div class="service">
-                  <!-- v-html="replaceFace(item.message)" -->
-                  <div class="pre" >{{ item.message }}</div>
+                  <!--  -->
+                  <div class="pre" v-html="replaceFace(item.message)"></div>
                 </div>
               </div>
             </li>
@@ -291,6 +291,7 @@ import moment from "moment";
 import { ImagePreview } from "vant";
 import {Upload} from '../api/user'
 import { Picker } from 'emoji-mart-vue';
+import DOMPurify from 'dompurify';
 
 // import html2canvas from "html2canvas";
 // import ScreenShort from "js-web-screen-shot";
@@ -614,19 +615,39 @@ export default {
         msg.scrollTop = msg.scrollHeight; // 滚动高度
       });
     },
-    replaceFace(con) {
-      var exps = this.EXPS;
+     sanitizeHtml(html) {
+      const config = {
+        ALLOWED_TAGS: ['b', 'i', 'u', 'strong', 'em', 'img'], // Adjust allowed tags as needed
+        ALLOWED_ATTRS: ['src', 'alt', 'style'], // Adjust allowed attributes as needed
+        ALLOWED_STYLES: ['vertical-align'] // Allow only the 'vertical-align' style
+      };
+      return DOMPurify.sanitize(html, config);
+    },
+    // replaceFace(con) {
+    //   var exps = this.EXPS;
 
-      for (var i = 0; i < exps.length; i++) {
-        // con = con.replace(new RegExp(exps[i].code,'g'), '<img src="static/emotion/' + exps[i].file +'"  alt="" />');
-        if (con) {
-          con = con.replace(
-            exps[i].reg,
-            `<img src="../emotion/${exps[i].file}"  alt="" style="vertical-align: middle;" />` // 打包时记得更改路径 为 “emotion/”
-          );
-        }
+    //   for (var i = 0; i < exps.length; i++) {
+    //     // con = con.replace(new RegExp(exps[i].code,'g'), '<img src="static/emotion/' + exps[i].file +'"  alt="" />');
+    //     if (con) {
+    //       con = con.replace(
+    //         exps[i].reg,
+    //         `<img src="../emotion/${exps[i].file}"  alt="" style="vertical-align: middle;" />` // 打包时记得更改路径 为 “emotion/”
+    //       );
+    //     }
+    //   }
+    //   return con;
+    // },
+    replaceFace(con) {
+      const sanitizedContent = this.sanitizeHtml(con); // Sanitize the HTML
+
+      for (var i = 0; i < this.EXPS.length; i++) {
+        sanitizedContent.replace(
+          this.EXPS[i].reg,
+          `<img src="../emotion/${this.EXPS[i].file}" alt="" style="vertical-align: middle;" />`
+        );
       }
-      return con;
+
+      return sanitizedContent;
     },
     emojiSelect(code) {
       this.chatmsg += code;
