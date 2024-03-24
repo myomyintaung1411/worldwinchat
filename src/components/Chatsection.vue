@@ -32,7 +32,8 @@
               <div class="outer-right">
                 <!-- <div class="read-msg">{{ customerName }}</div> -->
                 <div class="customer">
-                  <div class="pre" v-html="replaceFace(item.message)"></div>
+                  <!-- v-html="replaceFace(item.message)" -->
+                  <div class="pre" >{{ item.message }}</div>
                 </div>
               </div>
             </li>
@@ -85,7 +86,8 @@
               </div>
               <div class="outer-left">
                 <div class="service">
-                  <div class="pre" v-html="replaceFace(item.message)"></div>
+                  <!-- v-html="replaceFace(item.message)" -->
+                  <div class="pre" >{{ item.message }}</div>
                 </div>
               </div>
             </li>
@@ -264,15 +266,8 @@
             <div class="layui-whisper-face">
               <ul class="layui-clear whisper-face-list">
                 <li v-for="(item, index) in getEXP()" :key="index">
-                  <!-- <img
-                    :src="'https://tysq666.cn/emotion/' + item.file"
-                    :data="item.code"
-                    @click="emojiSelect(item.code)"
-                    :title="item.title"
-                    draggable="false"
-                  /> -->
                   <img
-                    :src="'https://hm5556.xyz/emotion/' + item.file"
+                    :src="'https://asdqwe.co/emotion/' + item.file"
                     :data="item.code"
                     @click="emojiSelect(item.code)"
                     :title="item.title"
@@ -281,6 +276,8 @@
                 </li>
               </ul>
             </div>
+            <!-- <picker @select="addEmoji" /> -->
+
           </div>
         </div>
       </transition>
@@ -293,10 +290,15 @@ import { mapState } from "vuex";
 import moment from "moment";
 import { ImagePreview } from "vant";
 import {Upload} from '../api/user'
+import { Picker } from 'emoji-mart-vue';
+
 // import html2canvas from "html2canvas";
 // import ScreenShort from "js-web-screen-shot";
 // import AES from "../api/aes";
 export default {
+  components: {
+    Picker
+  },
   data() {
     return {
       chtImg: {
@@ -306,11 +308,11 @@ export default {
         // image: "https://tysq666.cn/chatimg/image.png",
         // smile: "https://tysq666.cn/chatimg/smile.png",
 
-        customer: `https://hm5556.xyz/images/avatar.png`,
-        service: `https://hm5556.xyz/images/service-avatar.png`,
-        file: `https://hm5556.xyz/chatimg/file.png`,
-        image: `https://hm5556.xyz/chatimg/image.png`,
-        smile: `https://hm5556.xyz/chatimg/smile.png`,
+        customer: `https://asdqwe.co/images/avatar.png`,
+        service: `https://asdqwe.co/images/service-avatar.png`,
+        file: `https://asdqwe.co/chatimg/file.png`,
+        image: `https://asdqwe.co/chatimg/image.png`,
+        smile: `https://asdqwe.co/chatimg/smile.png`,
       },
       name: "",
       mine: true,
@@ -338,6 +340,10 @@ export default {
     };
   },
   methods: {
+    addEmoji(emoji) {
+      this.chatmsg += emoji.native;
+      this.$store.state.showEmoji = false;
+    },
     takeScreenShot() {
       // new ScreenShort();
       // window.location.href="about:blank";
@@ -629,7 +635,7 @@ export default {
 
     downloadImage(imgName) {
      // let srcImg = "https://tysq666.cn/" + imgName;
-      let srcImg = "https://hm5556.xyz/" + imgName;
+      let srcImg = "https://asdqwe.co/" + imgName;
       return srcImg;
     },
 

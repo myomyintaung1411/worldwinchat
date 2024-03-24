@@ -13,6 +13,7 @@ export default new Vuex.Store({
     showEmoji: false,
     loading: false,
     soundOpen: true,
+    chatWindow:true,//to use chat window popup
     audioUrl: require("../api/default.wav"),
     OneToOneChatRecord: [],
     AutoReplyChatRecord: [],
@@ -34,9 +35,16 @@ export default new Vuex.Store({
     soundOpen: state => {
       return state.soundOpen;
     },
+    chatWindow: state => {
+      return state.chatWindow;
+    },
   },
   mutations: {
     //play audio
+    toggleChatWindow(state,payload) {
+      console.log(payload,"from mutation of toggleChatwindow")
+      state.chatWindow = !payload
+    },
     play(state, payload) {
       let audio = new Audio(state.audioUrl);
       state.soundOpen = payload

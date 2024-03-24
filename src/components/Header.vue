@@ -7,7 +7,7 @@
     <div class="layui-col-xs9 chat-header-title" v-if="customerNickName">
       {{ customerNickName }}
     </div>
-    <div class="layui-col-xs9 chat-header-title" v-else>Customer service offline...</div>
+    <div class="layui-col-xs9 chat-header-title" v-else>客服不在线。。。</div>
 
     <div class="layui-col-xs1 chat-header-tool" id="operatorVoice">
       <span
@@ -38,6 +38,8 @@
           draggable="false"
         />
       </span>
+    
+
 
       <!-- <span
         class="iconfont"
@@ -45,22 +47,27 @@
         id="closeVoice"
         ></span
       > -->
+
     </div>
+      <div v-if="!chatWindow" @click="toggleChatWindow" class="closeX" style="color:white;position:absolute;right:10px;line-height: 60px;cursor:pointer">X</div>
   </div>
 </template>
 
 <script>
 import { mapState, mapGetters } from "vuex";
 export default {
+   props: {
+    showPopup: Boolean,
+  },
   data() {
     return {
       chatImg: {
         // service: "https://tysq666.cn/images/service-avatar.png",
         // sound: "https://tysq666.cn/images/sound.png",
         // nosound: "https://tysq666.cn/images/nosound.png",
-         service: "https://hm5556.xyz/images/service-avatar.png",
-         sound: "https://hm5556.xyz/images/sound.png",
-         nosound: "https://hm5556.xyz/images/nosound.png",
+         service: "https://asdqwe.co/images/service-avatar.png",
+         sound: "https://asdqwe.co/images/sound.png",
+         nosound: "https://asdqwe.co/images/nosound.png",
       },
       // soundOpen: true,
       // audioUrl: require("../api/default.wav"),
@@ -68,7 +75,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["soundOpen"]),
+    ...mapGetters(["soundOpen","chatWindow"]),
     ...mapState({
       soundState: (state) => state.soundOpen,
       customerNickName: (state) => state.customerInfo.customer_nickname,
@@ -90,7 +97,10 @@ export default {
     //     audio.paused();
     //   }
     // },
-
+        toggleChatWindow() {
+       this.$store.commit("toggleChatWindow", false);
+      // this.showPopup = !this.showPopup;
+    },
     play() {
       // let audio = new Audio(this.audioUrl);
       // this.soundOpen = true;
@@ -173,5 +183,8 @@ export default {
   margin-top: 20px;
   // align-self: center;
   // text-align: center;
+}
+.closeX:hover{
+ color: red !important;
 }
 </style>
