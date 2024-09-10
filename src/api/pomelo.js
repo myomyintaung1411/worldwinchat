@@ -56,12 +56,12 @@ function conn(cb) {
     function () {
       p_server.request('gate.gateHandler.queryEntry', msg, res => {
         p_server.disconnect()
-        // console.log(res, 'first', msg, msg2)
+        console.log(res, 'first', msg, msg2)
         if (res.code == 200) {
 
           let pt = res.port == '9010' ? '/conn3/' : res.port == '9011' ? '/conn4/' : '/conn5/'
           p_server2.init(
-            { host: 'im.actndjr.cn', port: '/conn3/', log: true },
+            { host: 'im.actndjr.cn', port: pt, log: true },
             // { host: 'im.actndjr.cn', port: '/conn3/', log: true },
             function (res) {
               p_server2.request('connector.entryHandler.entry', msg2, res => {
