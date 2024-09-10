@@ -2,27 +2,35 @@
   <!-- <div 
    :class="[{home: true}, {phonee: Screenwidth > 1000 ? true: false}]"
    > -->
-  <!-- <div class="__main"> -->
-    <div class="home">
-      <Header></Header>
+  <div class="__main">
+     <!-- <transition v-if="chatWindow" name="fade-up">
+     <div  class="popup_chatwindow" @click="toggleChatWindow">
+      <img src="../assets/service.png" alt="" style="width:100%;height:100%;border-radius:50%">
+    </div>
+    </transition> -->
+
+    <!-- <transition v-else  name="fade-up"> -->
+    <div   class="home">
+      <Header ></Header>
       <Chatsection></Chatsection>
       <Loader v-if="loading"></Loader>
     </div>
-  <!-- </div> -->
+    <!-- </transition> -->
+
+  </div>
 </template>
 
-<script>
-// @ is an alias to /src
+<script> 
+// @ is an alias to /src jessibuca.js
 // import HelloWorld from '@/components/HelloWorld.vue'
 import AES from "../api/aes";
 
 import Header from "@/components/Header.vue";
 import Chatsection from "@/components/Chatsection.vue";
 import Loader from "@/components/Loader.vue";
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
 import pomelo from "../api/pomelo";
 import {AgentLogin} from '../api/user'
-// import RightSide from "@/components/RightSide.vue";
 
 export default {
   name: "Home",
@@ -36,13 +44,19 @@ export default {
     return {
       Screenwidth: "",
       Screenheight: "",
+      showPopup:false
     };
   },
   computed: {
+     ...mapGetters(["chatWindow"]),
     ...mapState({ loading: (state) => state.loading }),
   },
 
   methods: {
+    toggleChatWindow() {
+       this.$store.commit("toggleChatWindow", true);
+      // this.showPopup = !this.showPopup;
+    },
     Loading() {
       this.$store.commit("Loading_Spinner", false);
     },
@@ -295,18 +309,18 @@ export default {
 </script>
 
 <style lang="scss">
-// .__main{
-//   background-image: url('~@/assets/tt.jpg');
-//   background-size: cover;
-//   background-repeat: no-repeat;
-//   // position: relative;
-//   width: 100vw;
-//   height: 100vh;
-// }
+.__main{
+  // background-image: url('~@/assets/tt.jpg');
+  // background-size: cover;
+  // background-repeat: no-repeat;
+   position: relative;
+  width: 100vw;
+  height: 100vh;
+}
 .home {
   width: 100%;
    height: 100%;
-  // max-width: 800px !important;
+    max-width: 600px !important;
   position: absolute;
   background: #f7f7f7;
   padding: 0;
@@ -315,16 +329,33 @@ export default {
   bottom: 0;
   right: 0;
   margin: auto;
-  
-  // width: 100%;
-  // height: 100%;
-  // position: absolute;
-  // pointer-events: none;
+       
 }
 .phonee {
   max-width: 400px;
 }
 .disablePage {
   pointer-events: none;
+}
+
+.popup_chatwindow{
+  position: absolute;
+  right: 10px;
+  bottom: 60px;
+  width: 80px;
+  height: 80px;
+  background: #1e9fff;
+  border-radius: 50%;
+}
+
+.fade-up-enter-active,
+.fade-up-leave-active {
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.fade-up-enter,
+.fade-up-leave-to {
+  opacity: 0;
+  transform: translateY(20px);
 }
 </style>
