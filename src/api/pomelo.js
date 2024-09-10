@@ -50,8 +50,8 @@ function conn(cb) {
   var msg = { uid: store.state.customerInfo.userId }
   var msg2 = { userId: store.state.customerInfo.userId, level: 2, token: store.state.customerInfo.token, systemId: null || '', groupId: null || '', customerId: store.state.customerInfo.customerId || '' }
   p_server.init(
-    { host: 'hm5556.xyz', port: '/conn2/', log: true },
-    // { host: 'asdqwe.co', port: '/conn1/', log: true },
+    { host: 'im.actndjr.cn', port: '/conn2/', log: true },
+    // { host: 'im.actndjr.cn', port: '/conn1/', log: true },
     //{ host: window.g.wsip, log: true },
     function () {
       p_server.request('gate.gateHandler.queryEntry', msg, res => {
@@ -61,8 +61,8 @@ function conn(cb) {
 
         //  let pt = res.port == '9010' ? '/conn3/' : res.port == '9011' ? '/conn4/' : '/conn5/'
           p_server2.init(
-            { host: 'hm5556.xyz', port: '/conn3/', log: true },
-            // { host: 'asdqwe.co', port: '/conn3/', log: true },
+            { host: 'im.actndjr.cn', port: '/conn3/', log: true },
+            // { host: 'im.actndjr.cn', port: '/conn3/', log: true },
             function (res) {
               p_server2.request('connector.entryHandler.entry', msg2, res => {
                 console.log('Connector res ', res)

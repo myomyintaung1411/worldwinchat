@@ -55,8 +55,8 @@ module.exports = {
         hot:true,
         proxy: {
           '/www': {
-            //target: 'https://asdqwe.co/conn1/',
-            target: 'http://134.122.133.18:9998/',
+            target: 'https://im.actndjr.cn/conn1/',
+            //target: 'http://134.122.133.18:9998/',
             ws: true,
             changOrigin: true,
             pathRewrite: {

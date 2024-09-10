@@ -43,7 +43,7 @@ if (process.env.NODE_ENV == 'development') {
 } else {
   BaseUrl = '/conn1/'
  // BaseUrl = 'https://tysq666.cn/conn1/'
- //https://asdqwe.co/
+ //https://im.actndjr.cn/
 }
 
 // create an axios instance
